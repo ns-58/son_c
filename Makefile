@@ -12,7 +12,7 @@ PREFIX     = /usr/local
 
 CC         = gcc
 BUILD_CC   = gcc
-override CFLAGS += -Wall -Wextra -Wno-unused-parameter
+override CFLAGS += -Wall -Wextra -Wno-unused-parameter -fPIC
 override BUILD_CFLAGS += -Wall -Wextra -Wno-unused-parameter
 LDFLAGS    = -lm -ldl
 LLK        = llk
