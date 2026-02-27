@@ -382,7 +382,8 @@ void ir_truncate(ir_ctx *ctx)
 	ctx->ir_base = buf + ctx->consts_limit;
 }
 
-ir_ctx *create_ir_ctx(){
+ir_ctx *ir_create_ctx()
+{
 	return (ir_ctx *) ir_mem_malloc(sizeof(ir_ctx));
 }
 
@@ -418,6 +419,16 @@ void ir_init(ir_ctx *ctx, uint32_t flags, ir_ref consts_limit, ir_ref insns_limi
 	ctx->ir_base[IR_TRUE].optx = IR_OPT(IR_C_BOOL, IR_BOOL);
 	ctx->ir_base[IR_TRUE].val.u64 = 1;
 }
+
+IR_ALWAYS_INLINE void ir_set_i32_ret_type(ir_ctx *ctx)
+{
+	ctx->ret_type = IR_I32;
+} 
+
+IR_ALWAYS_INLINE void ir_set_i64_ret_type(ir_ctx *ctx)
+{
+	ctx->ret_type = IR_I64;
+} 
 
 void ir_free(ir_ctx *ctx)
 {

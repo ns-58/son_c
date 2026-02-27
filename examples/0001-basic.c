@@ -33,18 +33,18 @@ int main(int argc, char **argv)
 {
 	// ir_ctx ctx;
 	
-	ir_ctx *ctx_ptr = create_ir_ctx();
+	ir_ctx *ctx_ptr = ir_create_ctx();
 	ir_consistency_check();
 
-	ir_init(ctx_ptr, IR_FUNCTION | IR_OPT_FOLDING, IR_CONSTS_LIMIT_MIN, IR_INSNS_LIMIT_MIN);
-	ctx_ptr->ret_type = IR_I32;
+	ir_init(ctx_ptr, 256 | IR_OPT_FOLDING, IR_CONSTS_LIMIT_MIN, IR_INSNS_LIMIT_MIN);
+	ir_set_i32_ret_type(ctx_ptr);
 
 	gen_myfunc(ctx_ptr);
 
 	size_t size;
 	void *entry = ir_jit_compile(ctx_ptr, 2, &size);
 	if (entry) {
-		printf("42 - 24 = %d\n", ((myfunc_t)entry)(42, 24));
+		printf("1104 - 202 = %d\n", ((myfunc_t)entry)(1104, 202));
 	}
 
 	ir_free(ctx_ptr);
