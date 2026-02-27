@@ -711,8 +711,8 @@ ir_ctx *ir_create_ctx();
 void ir_init(ir_ctx *ctx, uint32_t flags, ir_ref consts_limit, ir_ref insns_limit);
 void ir_free(ir_ctx *ctx);
 void ir_truncate(ir_ctx *ctx);
-IR_ALWAYS_INLINE void ir_set_i32_ret_type(ir_ctx *ctx);
-IR_ALWAYS_INLINE void ir_set_i64_ret_type(ir_ctx *ctx);
+void ir_set_i32_ret_type(ir_ctx *ctx);
+void ir_set_i64_ret_type(ir_ctx *ctx);
 
 ir_ref ir_const(ir_ctx *ctx, ir_val val, uint8_t type);
 ir_ref ir_const_i8(ir_ctx *ctx, int8_t c);

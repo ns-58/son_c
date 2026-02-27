@@ -420,12 +420,12 @@ void ir_init(ir_ctx *ctx, uint32_t flags, ir_ref consts_limit, ir_ref insns_limi
 	ctx->ir_base[IR_TRUE].val.u64 = 1;
 }
 
-IR_ALWAYS_INLINE void ir_set_i32_ret_type(ir_ctx *ctx)
+void ir_set_i32_ret_type(ir_ctx *ctx)
 {
 	ctx->ret_type = IR_I32;
 } 
 
-IR_ALWAYS_INLINE void ir_set_i64_ret_type(ir_ctx *ctx)
+void ir_set_i64_ret_type(ir_ctx *ctx)
 {
 	ctx->ret_type = IR_I64;
 } 
