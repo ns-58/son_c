@@ -382,6 +382,10 @@ void ir_truncate(ir_ctx *ctx)
 	ctx->ir_base = buf + ctx->consts_limit;
 }
 
+ir_ctx *create_ir_ctx(){
+	return (ir_ctx *) ir_mem_malloc(sizeof(ir_ctx));
+}
+
 void ir_init(ir_ctx *ctx, uint32_t flags, ir_ref consts_limit, ir_ref insns_limit)
 {
 	ir_insn *buf;
@@ -2524,7 +2528,7 @@ void _ir_PHI_SET_OP(ir_ctx *ctx, ir_ref phi, ir_ref pos, ir_ref src)
 	ops[pos] = src;
 }
 
-void _ir_START(ir_ctx *ctx)
+void 	_ir_START(ir_ctx *ctx)
 {
 	IR_ASSERT(!ctx->control);
 	IR_ASSERT(ctx->insns_count == 1);

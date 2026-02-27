@@ -31,22 +31,23 @@ void gen_myfunc(ir_ctx *ctx)
 
 int main(int argc, char **argv)
 {
-	ir_ctx ctx;
-
+	// ir_ctx ctx;
+	
+	ir_ctx *ctx_ptr = create_ir_ctx();
 	ir_consistency_check();
 
-	ir_init(&ctx, IR_FUNCTION | IR_OPT_FOLDING, IR_CONSTS_LIMIT_MIN, IR_INSNS_LIMIT_MIN);
-	ctx.ret_type = IR_I32;
+	ir_init(ctx_ptr, IR_FUNCTION | IR_OPT_FOLDING, IR_CONSTS_LIMIT_MIN, IR_INSNS_LIMIT_MIN);
+	ctx_ptr->ret_type = IR_I32;
 
-	gen_myfunc(&ctx);
+	gen_myfunc(ctx_ptr);
 
 	size_t size;
-	void *entry = ir_jit_compile(&ctx, 2, &size);
+	void *entry = ir_jit_compile(ctx_ptr, 2, &size);
 	if (entry) {
 		printf("42 - 24 = %d\n", ((myfunc_t)entry)(42, 24));
 	}
 
-	ir_free(&ctx);
+	ir_free(ctx_ptr);
 
 	return 0;
 }
