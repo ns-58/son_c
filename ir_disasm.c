@@ -173,6 +173,13 @@ void ir_disasm_add_symbol(const char *name,
 	_symbols->info = 0;
 }
 
+void ir_disasm_add_symbol_w (const char *name,
+                          void    *addr,
+                          uint64_t size)
+{
+	ir_disasm_add_symbol (name, (uint64_t)(uintptr_t) addr, size);
+}
+
 static void ir_disasm_destroy_symbols(ir_sym_node *n)
 {
 	if (n) {

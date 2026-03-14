@@ -661,6 +661,11 @@ ir_ref ir_const_addr(ir_ctx *ctx, uintptr_t c)
 	return ir_const(ctx, val, IR_ADDR);
 }
 
+ir_ref ir_const_addr_w(ir_ctx *ctx, void* c)
+{
+	return (ir_const_addr(ctx,  (uintptr_t) c));
+}
+
 ir_ref ir_const_func_addr(ir_ctx *ctx, uintptr_t c, ir_ref proto)
 {
 	if (c == 0) {

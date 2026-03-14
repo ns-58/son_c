@@ -707,7 +707,7 @@ struct _ir_ctx {
 };
 
 /* Basic IR Construction API (implementation in ir.c) */
-ir_ctx *create_ir_ctx();
+ir_ctx *ir_create_ctx();
 void ir_init(ir_ctx *ctx, uint32_t flags, ir_ref consts_limit, ir_ref insns_limit);
 void ir_free(ir_ctx *ctx);
 void ir_truncate(ir_ctx *ctx);
@@ -726,6 +726,8 @@ ir_ref ir_const_char(ir_ctx *ctx, char c);
 ir_ref ir_const_float(ir_ctx *ctx, float c);
 ir_ref ir_const_double(ir_ctx *ctx, double c);
 ir_ref ir_const_addr(ir_ctx *ctx, uintptr_t c);
+ir_ref ir_const_addr_w(ir_ctx *ctx, void *c);
+
 
 ir_ref ir_const_func_addr(ir_ctx *ctx, uintptr_t c, ir_ref proto);
 ir_ref ir_const_func(ir_ctx *ctx, ir_ref str, ir_ref proto);
@@ -881,6 +883,7 @@ void *ir_resolve_sym_name(const char *name);
 int  ir_disasm_init(void);
 void ir_disasm_free(void);
 void ir_disasm_add_symbol(const char *name, uint64_t addr, uint64_t size);
+void ir_disasm_add_symbol_w(const char *name, void *addr, uint64_t size);
 const char* ir_disasm_find_symbol(uint64_t addr, int64_t *offset);
 int  ir_disasm(const char *name,
                const void *start,
