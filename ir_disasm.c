@@ -494,7 +494,7 @@ int ir_disasm(const char    *name,
 			if (entry >= 0) {
 				fprintf(f, ".ENTRY_%d:\n", entry);
 			} else {
-				fprintf(f, ".L%d:\n", -entry);
+				fprintf(f, ".L%s%d:\n", name, -entry);
 			}
 		}
 
@@ -552,7 +552,7 @@ int ir_disasm(const char    *name,
 						if (entry >= 0) {
 							fprintf(f, ".ENTRY_%d%s\n", entry, q);
 						} else {
-							fprintf(f, ".L%d%s\n", -entry, q);
+							fprintf(f, ".L%s%d%s\n", name, -entry, q);
 						}
 						continue;
 					}
@@ -615,7 +615,7 @@ int ir_disasm(const char    *name,
 					if (entry >= 0) {
 						fprintf(f, ".ENTRY_%d", entry);
 					} else {
-						fprintf(f, ".L%d", -entry);
+						fprintf(f, ".L%s%d", name,  -entry);
 					}
 				} else if (r > p) {
 					fwrite(p, 1, r - p, f);
@@ -670,7 +670,7 @@ int ir_disasm(const char    *name,
 				if (entry >= 0) {
 					fprintf(f, ".ENTRY_%d:\n", entry);
 				} else {
-					fprintf(f, ".L%d:\n", -entry);
+					fprintf(f, ".L%s%d:\n", name, -entry);
 				}
 			}
 			fprintf(f, "\t.db 0x%02x", (int)*p);
@@ -703,7 +703,7 @@ int ir_disasm(const char    *name,
 				if (entry >= 0) {
 					fprintf(f, ".ENTRY_%d:\n", entry);
 				} else {
-					fprintf(f, ".L%d:\n", -entry);
+					fprintf(f, ".L%s%d:\n", name, -entry);
 				}
 			}
 			if (*p) {
@@ -718,9 +718,9 @@ int ir_disasm(const char    *name,
 						}
 					} else {
 						if (sizeof(void*) == 8) {
-							fprintf(f, "\t.qword .L%d\n", -entry);
+							fprintf(f, "\t.qword .L%s%d\n", name, -entry);
 						} else {
-							fprintf(f, "\t.dword .L%d\n", -entry);
+							fprintf(f, "\t.dword .L%s%d\n", name, -entry);
 						}
 					}
 				} else {
